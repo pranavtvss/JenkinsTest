@@ -7,6 +7,8 @@ pipeline {
 	JENKINS_URL = "${env.JENKINS_URL}"
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
+	GIT_COMMIT = "${env.GIT_COMMIT}"
+	GIT_BRANCH =    "${env.GIT_BRANCH}" 
     }
    
    stages {
@@ -19,6 +21,8 @@ pipeline {
                 echo JOB_NAME
                 echo JENKINS_HOME
                echo 'Stage Run'
+		    echo GIT_BRANCH
+		    echo GIT_COMMIT
                 echo ENV_NAME
             }
         }

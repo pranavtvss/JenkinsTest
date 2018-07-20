@@ -8,8 +8,9 @@ pipeline {
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_COMMIT = "${env.GIT_COMMIT}"
-	GIT_BRANCH =    "${env.GIT_BRANCH_LOCAL}" 
+	GIT_BRANCH =    "${env.GIT_BRANCH}" 
 	GIT_COMMIT_DESC =    "${env.GIT_COMMIT_DESC}" 
+	GIT_BRANCH_LOCAL = ""
 	    
     }
    
@@ -18,6 +19,8 @@ pipeline {
            stage ('Stage Run') {
 
             steps {    
+		GIT_BRANCH_LOCAL=\\\"$GIT_BRANCH\\\" | sed -e 's|origin/||g' | tee version.properties
+		echo GIT_BRANCH_LOCAL
                 echo ENV_BUILD_NO
                 echo JENKINS_URL
                 echo JOB_NAME
@@ -37,7 +40,7 @@ pipeline {
    
    				echo 'Report Mail sending'
             script {
-                    emailext subject: '$DEFAULT_SUBJECT'+' for BAE-SQL-VERSION / '+ GIT_BRANCH,    
+                    emailext subject: '$DEFAULT_SUBJECT'+' for BAE-SQL-VERSION / '+ GIT_BRANCH_LOCAL,    
 			body: "Click the link below to show REST API Testing Results for your current build :  \n"+JENKINS_URL+"blue/organizations/jenkins/"+JOB_NAME+"/detail/"+JOB_NAME+"/activity/"+"\n\n\n Click the link below to show Mockito TestNG Results for your current build :  \n"+" https://bwrestapiqa.boardwalktech.com:8443/jenkins/userContent/"+JOB_NAME+"/Mockito_Reports/"+ENV_BUILD_NO+"/index.html" +"\n\n\n Click the link below to show Unit Testing Results for your current build :  \n"+" https://bwrestapiqa.boardwalktech.com:8443/jenkins/userContent/"+JOB_NAME+"/Unit_Reports/"+ENV_BUILD_NO+"/index.html" ,
                         attachLog: true,
                         replyTo: '$DEFAULT_REPLYTO',

@@ -23,7 +23,7 @@ pipeline {
                echo 'Stage Run'
 		    echo GIT_BRANCH
 		    echo GIT_COMMIT
-                echo ENV_NAME
+           
             }
         }
       

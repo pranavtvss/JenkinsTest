@@ -8,7 +8,7 @@ pipeline {
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_COMMIT = "${env.GIT_COMMIT}"
-	GIT_BRANCH =    "${env.GIT_LOCAL_BRANCH}" 
+	GIT_BRANCH =    "${env.GIT_BRANCH_LOCAL}" 
 	GIT_COMMIT_DESC =    "${env.GIT_COMMIT_DESC}" 
 	    
     }

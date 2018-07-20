@@ -2,15 +2,15 @@ pipeline {
     agent any
  
     environment {
-    ENV_NAME = "${env.BRANCH_NAME}"
+        ENV_NAME = "${env.BRANCH_NAME}"
 	ENV_BUILD_NO = "${env.BUILD_NUMBER}"
 	JENKINS_URL = "${env.JENKINS_URL}"
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_COMMIT = "${env.GIT_COMMIT}"
 	GIT_BRANCH =    "${env.GIT_BRANCH}" 
-	GIT_COMMIT_DESC =    "${env.GIT_COMMIT_DESC}" 
-	GIT_BRANCH_LOCAL = ""
+	
+	
 	    
     }
    
@@ -19,8 +19,6 @@ pipeline {
            stage ('Stage Run') {
 
             steps {    
-		echo GIT_BRANCH_LOCAL=\\\"$GIT_BRANCH\\\" | sed -e 's|origin/||g' | tee version.properties
-		echo GIT_BRANCH_LOCAL
                 echo ENV_BUILD_NO
                 echo JENKINS_URL
                 echo JOB_NAME

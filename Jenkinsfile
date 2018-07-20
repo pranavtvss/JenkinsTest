@@ -29,4 +29,21 @@ pipeline {
       
    }
    
+	  post{
+   
+   always{
+   
+   				echo 'Report Mail sending'
+            script {
+                    emailext subject: '$DEFAULT_SUBJECT'+ GIT_BRANCH + GIT_COMMIT,    
+			body: "Click the link below to show REST API Testing Results for your current build :  \n"+JENKINS_URL+"blue/organizations/jenkins/"+JOB_NAME+"/detail/"+JOB_NAME+"/activity/"+"\n\n\n Click the link below to show Mockito TestNG Results for your current build :  \n"+" https://bwrestapiqa.boardwalktech.com:8443/jenkins/userContent/"+JOB_NAME+"/Mockito_Reports/"+ENV_BUILD_NO+"/index.html" +"\n\n\n Click the link below to show Unit Testing Results for your current build :  \n"+" https://bwrestapiqa.boardwalktech.com:8443/jenkins/userContent/"+JOB_NAME+"/Unit_Reports/"+ENV_BUILD_NO+"/index.html" ,
+                        attachLog: true,
+                        replyTo: '$DEFAULT_REPLYTO',
+                        to: '$DEFAULT_RECIPIENTS'          	
+            }
+   }
+   
+   }
+	
+	
 }

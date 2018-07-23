@@ -11,7 +11,7 @@ pipeline {
    
    stages {
       	   
-		   stage ('Build only on master') 
+	   stage ('Build only on master') {
           
 			 when { branch 'master' }
 				steps { 

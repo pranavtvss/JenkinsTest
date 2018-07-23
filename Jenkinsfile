@@ -17,7 +17,7 @@ pipeline {
 				steps { 
 					echo 'I only execute on the master branch.' 
 					echo 'Result of previous build  ' + currentBuild.getPreviousBuild().result
-					echo 'changed data   '+currentBuild.rawBuild.getChangeSets()
+					echo 'changed data   '+currentBuild.changeSets
 					echo 'Env build number   ' +ENV_BUILD_NO
 					echo 'Jenkins URL   ' +JENKINS_URL
 					echo 'JOB NAME   ' +JOB_NAME
@@ -34,7 +34,7 @@ pipeline {
 					steps {
 					echo 'I execute on non-master branches.'
 					echo 'Result of previous build   ' + currentBuild.getPreviousBuild().result
-					echo 'changed data   '+currentBuild.rawBuild.getChangeSets()
+					echo 'changed data   '+currentBuild.changeSets
 					echo 'Env build number   ' +ENV_BUILD_NO
 					echo 'Jenkins URL   ' +JENKINS_URL
 					echo 'JOB NAME  ' +JOB_NAME

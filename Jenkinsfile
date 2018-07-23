@@ -34,7 +34,7 @@ pipeline {
 					steps {
 					echo 'I execute on non-master branches.'
 					echo 'Result of previous build   ' + currentBuild.getPreviousBuild().result
-						
+						script{		
 					def changeLogSets = currentBuild.changeSets
 					for (int i = 0; i < changeLogSets.size(); i++) {
     					def entries = changeLogSets[i].items
@@ -48,7 +48,7 @@ pipeline {
       							  }
    							 }
 							}
-						
+						}
 					echo 'changed data   '+currentBuild.changeSets
 					echo 'Env build number   ' +ENV_BUILD_NO
 					echo 'Jenkins URL   ' +JENKINS_URL

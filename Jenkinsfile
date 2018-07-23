@@ -28,7 +28,7 @@ pipeline {
 						}
 										}
 					
-		stage ('Test 3: Dev') {
+		stage ('Build only on non-master') {
 				when { not { branch 'master' } }
 					steps {
 					echo 'I execute on non-master branches.'

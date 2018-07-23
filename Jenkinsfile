@@ -9,32 +9,37 @@ pipeline {
 	GIT_BRANCH =    "${env.GIT_BRANCH}" 
     }
    
-           stages {
-                    stage('test') {
-                            steps {
-                                    sh 'echo hello'
-                            }
-                    }
-                    stage('test1') {
-                            steps {
-                                    sh 'echo $TEST'
-                            }
-                    }
-                    stage('test3') {
-                            steps {
-                                    script {
+   stages {
+      	   
+            steps {    
+                echo ENV_BUILD_NO
+                echo JENKINS_URL
+                echo JOB_NAME
+                echo JENKINS_HOME
+                echo 'Stage Run'
+		echo GIT_BRANCH
+	
+             
+            }
+        }
+      
+stage ('Build only on master') {
+          
+            steps {
+                
+				
+				script {
                                             if (GIT_BRANCH == 'origin/master') {
                                                     echo 'I only execute on the master branch'
                                             } else {
                                                     echo 'I execute elsewhere'
                                             }
-					    
-                                    }
-                            }
-                    }
+											
+				
+				
+				
             }
-      
-
+        }
 	
    }
    
@@ -45,9 +50,9 @@ pipeline {
    				echo 'Report Mail sending'
         //    script {
         //            emailext subject: '$DEFAULT_SUBJECT'+ GIT_BRANCH,    
-		//	body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:' ,
+	//		body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:' ,
         //                attachLog: true,
-        //               replyTo: '$DEFAULT_REPLYTO',
+        //                replyTo: '$DEFAULT_REPLYTO',
         //                to: 'pranav@techvision.net.in'
         //    }
    }
@@ -55,4 +60,4 @@ pipeline {
 }
 	
 	
-
+}

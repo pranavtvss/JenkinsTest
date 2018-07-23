@@ -6,7 +6,7 @@ pipeline {
 	JENKINS_URL = "${env.JENKINS_URL}"
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
-	//GIT_BRANCH =    "${env.GIT_BRANCH}" 
+	GIT_BRANCH =    "${env.GIT_BRANCH}" 
     }
    
            stages {
@@ -23,11 +23,12 @@ pipeline {
                     stage('test3') {
                             steps {
                                     script {
-                                            if (env.BRANCH_NAME == 'master') {
+                                            if (GIT_BRANCH == 'origin/master') {
                                                     echo 'I only execute on the master branch'
                                             } else {
                                                     echo 'I execute elsewhere'
                                             }
+					    
                                     }
                             }
                     }

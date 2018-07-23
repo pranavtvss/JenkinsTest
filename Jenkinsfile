@@ -6,13 +6,18 @@ pipeline {
 	JENKINS_URL = "${env.JENKINS_URL}"
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
-	GIT_BRANCH =    "${env.GIT_BRANCH}" 
+	//GIT_BRANCH =    "${env.GIT_BRANCH}" 
     }
    
    stages {
       
            stage ('Stage Run') {
 
+		   expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    return GIT_BRANCH
+                }
+		   
             steps {    
                 echo ENV_BUILD_NO
                 echo JENKINS_URL

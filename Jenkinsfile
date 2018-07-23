@@ -16,12 +16,13 @@ pipeline {
 			 when { branch 'master' }
 				steps { 
 					echo 'I only execute on the master branch.' 
-					echo 'Result of previous build' + currentBuild.getPreviousBuild().result
-					echo 'Env build number' +ENV_BUILD_NO
-					echo 'Jenkins URL' +JENKINS_URL
-					echo 'JOB NAME' +JOB_NAME
-					echo 'JENKINS HOME' +JENKINS_HOME
-					echo 'GIT BRANCH' +GIT_BRANCH				
+					echo 'Result of previous build  ' + currentBuild.getPreviousBuild().result
+					echo 'changed data   '+currentBuild.rawBuild.getChangeSets()
+					echo 'Env build number   ' +ENV_BUILD_NO
+					echo 'Jenkins URL   ' +JENKINS_URL
+					echo 'JOB NAME   ' +JOB_NAME
+					echo 'JENKINS HOME   ' +JENKINS_HOME
+					echo 'GIT BRANCH   ' +GIT_BRANCH				
 				
 
 										
@@ -32,12 +33,13 @@ pipeline {
 				when { not { branch 'master' } }
 					steps {
 					echo 'I execute on non-master branches.'
-					echo 'Result of previous build' + currentBuild.getPreviousBuild().result
-					echo 'Env build number' +ENV_BUILD_NO
-					echo 'Jenkins URL' +JENKINS_URL
-					echo 'JOB NAME' +JOB_NAME
-					echo 'JENKINS HOME' +JENKINS_HOME
-					echo 'GIT BRANCH' +GIT_BRANCH
+					echo 'Result of previous build   ' + currentBuild.getPreviousBuild().result
+					echo 'changed data   '+currentBuild.rawBuild.getChangeSets()
+					echo 'Env build number   ' +ENV_BUILD_NO
+					echo 'Jenkins URL   ' +JENKINS_URL
+					echo 'JOB NAME  ' +JOB_NAME
+					echo 'JENKINS HOME   ' +JENKINS_HOME
+					echo 'GIT BRANCH   ' +GIT_BRANCH
 				}
 							}					
 										

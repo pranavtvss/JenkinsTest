@@ -11,22 +11,16 @@ pipeline {
    
    stages {
       	   
-            steps {    
-                echo ENV_BUILD_NO
+		   stage ('Build only on master') {
+          
+            steps {
+                
+				                echo ENV_BUILD_NO
                 echo JENKINS_URL
                 echo JOB_NAME
                 echo JENKINS_HOME
                 echo 'Stage Run'
 		echo GIT_BRANCH
-	
-             
-            }
-        }
-      
-stage ('Build only on master') {
-          
-            steps {
-                
 				
 				script {
                                             if (GIT_BRANCH == 'origin/master') {
@@ -42,19 +36,24 @@ stage ('Build only on master') {
         }
 	
    }
+		   
+        
+        }
+      
+
    
 	  post{
    
    always{
    
    				echo 'Report Mail sending'
-        //    script {
-        //            emailext subject: '$DEFAULT_SUBJECT'+ GIT_BRANCH,    
-	//		body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:' ,
-        //                attachLog: true,
-        //                replyTo: '$DEFAULT_REPLYTO',
-        //                to: 'pranav@techvision.net.in'
-        //    }
+            script {
+                    emailext subject: '$DEFAULT_SUBJECT'+ GIT_BRANCH,    
+			body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:' ,
+                        attachLog: true,
+                        replyTo: '$DEFAULT_REPLYTO',
+                        to: 'pranav@techvision.net.in'
+            }
    }
    
 }

@@ -7,6 +7,9 @@ pipeline {
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_BRANCH =    "${env.GIT_BRANCH}" 
+	CODE_EDIT = ""
+	DOC_EDIT = ""
+	J_EDIT = ""
     }
    
    stages {
@@ -47,6 +50,26 @@ pipeline {
 							
             				echo "editType name :  ${file.editType.name} "
 							echo  "File path  : ${file.path}"
+										
+							if((${file.path}).includes("Documents"))
+							{
+							DOC_EDIT = "true"
+							}
+							
+							if((${file.path}).includes("Code"))
+							{
+							CODE_EDIT = "true"
+							}
+							
+							if((${file.path}).includes("Jenkinsfile"))
+							{
+							J_EDIT = "true"
+							}
+							
+							
+							echo "DOC_EDIT" + DOC_EDIT
+							echo "CODE_EDIT" + CODE_EDIT
+							echo "J EDIT" + J_EDIT
       							  }
    							 }
 							}
@@ -60,7 +83,28 @@ pipeline {
 				}
 							}					
 										
-										
+					
+	
+			stage ('Document zipping stage') {
+          
+			 when { branch 'master' }
+				steps { 
+								
+				echo 'Document zipping stage'
+						}
+								}
+	
+			
+			stage ('Compile Stage Run') {
+          
+			 when { branch 'master' }
+				steps { 
+								
+				echo 'Compile Stage Run'
+						}
+								}
+	
+					
 		   
         }
       

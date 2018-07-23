@@ -43,8 +43,10 @@ pipeline {
         				echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
         				def files = new ArrayList(entry.affectedFiles)
         				for (int k = 0; k < files.size(); k++) {
-            				def file = files[k]
-            				echo "  ${file.editType.name} ${file.path}"
+            				def file = files[k]	
+							
+            				echo "editType name :  ${file.editType.name} "
+							echo  "File path  : ${file.path}"
       							  }
    							 }
 							}

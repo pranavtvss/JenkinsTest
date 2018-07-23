@@ -29,7 +29,7 @@ pipeline {
 										}
 					
 		stage ('Test 3: Dev') {
-				when { not { branch 'Maven-Build' } }
+				when { not { branch 'master' } }
 					steps {
 					echo 'I execute on non-master branches.'
 					echo ENV_BUILD_NO

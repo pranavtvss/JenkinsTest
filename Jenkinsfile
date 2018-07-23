@@ -23,7 +23,7 @@ pipeline {
 		echo GIT_BRANCH
 				
 				script {
-                                            if (GIT_BRANCH == 'origin/master') {
+                                            if (GIT_BRANCH == 'master') {
                                                     echo 'I only execute on the master branch'
                                             } else {
                                                     echo 'I execute elsewhere'

@@ -13,31 +13,36 @@ pipeline {
       	   
 		   stage ('Build only on master') {
           
-            steps {
-                
-				                echo ENV_BUILD_NO
+			 when { branch 'master' }
+				steps { 
+					echo 'I only execute on the master branch.' 
+									
+				echo ENV_BUILD_NO
                 echo JENKINS_URL
                 echo JOB_NAME
                 echo JENKINS_HOME
                 echo 'Stage Run'
-		echo GIT_BRANCH
-				
-				script {
-                                            if (GIT_BRANCH == 'master') {
-                                                    echo 'I only execute on the master branch'
-                                            } else {
-                                                    echo 'I execute elsewhere'
-                                            }
-											
-				
-				
-				
-            }
-        }
-	
-   }
+				echo GIT_BRANCH
+
+										
+						}
+										}
+					
+		stage ('Test 3: Dev') {
+				when { not { branch 'Maven-Build' } }
+					steps {
+					echo 'I execute on non-master branches.'
+					echo ENV_BUILD_NO
+					echo JENKINS_URL
+					echo JOB_NAME
+					echo JENKINS_HOME
+					echo 'Stage Run'
+					echo GIT_BRANCH
+				}
+							}					
+										
+										
 		   
-        
         }
       
 

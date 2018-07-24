@@ -91,7 +91,9 @@ pipeline {
 	
 			stage ('Document zipping stage') {
           
-			 when { DOC_EDIT 'change' }
+			 when {   environment name: 'DOC_EDIT', value: 'change'  }
+			 
+			 
 				steps { 
 								
 				echo 'Document zipping stage'
@@ -101,7 +103,7 @@ pipeline {
 			
 			stage ('Compile Stage Run') {
           
-			 when { CODE_EDIT 'change' }
+			 when {   environment name: 'CODE_EDIT', value: 'change'  }
 				steps { 
 								
 				echo 'Compile Stage Run'

@@ -77,27 +77,24 @@ pipeline {
 		
 							} 
 				
-					
-			
-					
-					
-					
-			
-			
+
 			}
 				
-				
-				
-						
-
 				}
 							}					
 										
 					
 	
 			stage ('Document zipping stage') {
+			echo 
           
-			 when {   environment name: 'DOC_EDIT', value: 'change'  }
+			 when {   	  expression {
+									return DOC_EDIT == 'change';
+									}
+					
+			 }
+			 
+		
 			 
 			 
 				steps { 
@@ -109,7 +106,11 @@ pipeline {
 			
 			stage ('Compile Stage Run') {
           
-			 when {   environment name: 'CODE_EDIT', value: 'change'  }
+			 when {   	  expression {
+									return CODE_EDIT == 'change';
+									}		
+			 }
+			 
 				steps { 
 								
 				echo 'Compile Stage Run'

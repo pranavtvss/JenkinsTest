@@ -8,41 +8,13 @@ pipeline {
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_BRANCH =    "${env.GIT_BRANCH}" 
-	CODE_EDIT = ""
-	DOC_EDIT = ""
+	CODE_EDIT = "nochange"
+	DOC_EDIT = "nochange"
 	J_EDIT = ""
     }
    
    stages {
    
-   
-   	   stage ('calculate change') {
-          
-			steps{
-			
-			
-			script{
-			
-					def changes = "Changes:\n"
-					build = currentBuild
-					while(build != null && build.result != 'SUCCESS') {
-						changes += "In ${build.id}:\n"
-						for (changeLog in build.changeSets) {
-							for(entry in changeLog.items) {
-								for(file in entry.affectedFiles) {
-									changes += "* ${file.path}\n"
-								}
-							}
-						}
-						build = build.previousBuild
-					}
-					echo changes
-			
-			
-			}
-			
-			}
-										}
    
    	   
 	   stage ('Build only on master') {
@@ -73,48 +45,45 @@ pipeline {
 					
 					
 						script{		
-					def changeLogSets = currentBuild.changeSets
-					for (int i = 0; i < changeLogSets.size(); i++) {
-    					def entries = changeLogSets[i].items
-  					  for (int j = 0; j < entries.length; j++) {
-        				def entry = entries[j]
-        				echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}"
-        				def files = new ArrayList(entry.affectedFiles)
-        				for (int k = 0; k < files.size(); k++) {
-            				def file = files[k]	
-							
-            				echo "editType name :  ${file.editType.name} "
-							echo  "File path  : ${file.path}"
-										
-							if((${file.path}).includes("Documents"))
-							{
-							DOC_EDIT = "true"
-							}
-							
-							if((${file.path}).includes("Code"))
-							{
-							CODE_EDIT = "true"
-							}
-							
-							if((${file.path}).includes("Jenkinsfile"))
-							{
-							J_EDIT = "true"
-							}
-							
-							
-							echo "DOC_EDIT" + DOC_EDIT
-							echo "CODE_EDIT" + CODE_EDIT
-							echo "J EDIT" + J_EDIT
-      							  }
-   							 }
+		
+					script{
+			
+					def changes = "Changes:\n"
+					build = currentBuild
+					while(build != null && build.result != 'SUCCESS') {
+						changes += "In ${build.id}:\n"
+						for (changeLog in build.changeSets) {
+							for(entry in changeLog.items) {
+								for(file in entry.affectedFiles) {
+									changes += "* ${file.path}\n"
+								}
 							}
 						}
-					echo 'changed data   '+currentBuild.changeSets
-					echo 'Env build number   ' +ENV_BUILD_NO
-					echo 'Jenkins URL   ' +JENKINS_URL
-					echo 'JOB NAME  ' +JOB_NAME
-					echo 'JENKINS HOME   ' +JENKINS_HOME
-					echo 'GIT BRANCH   ' +GIT_BRANCH
+						build = build.previousBuild
+					}
+					
+					echo changes
+					
+					if(changes.includes("Documents"))
+					{
+					DOC_EDIT = "change"
+					}
+					
+					if(changes.includes("Documents"))
+					{
+					CODE_EDIT = "change"
+					}
+					
+					
+					
+			
+			
+			}
+				
+				
+				
+						}
+
 				}
 							}					
 										
@@ -122,7 +91,7 @@ pipeline {
 	
 			stage ('Document zipping stage') {
           
-			 when { branch 'master' }
+			 when { DOC_EDIT 'change' }
 				steps { 
 								
 				echo 'Document zipping stage'
@@ -132,7 +101,7 @@ pipeline {
 			
 			stage ('Compile Stage Run') {
           
-			 when { branch 'master' }
+			 when { CODE_EDIT 'change' }
 				steps { 
 								
 				echo 'Compile Stage Run'

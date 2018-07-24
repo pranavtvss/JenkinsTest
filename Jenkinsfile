@@ -44,7 +44,7 @@ pipeline {
 					
 					
 					
-						script{		
+					
 		
 					script{
 			
@@ -55,6 +55,7 @@ pipeline {
 						for (changeLog in build.changeSets) {
 							for(entry in changeLog.items) {
 								for(file in entry.affectedFiles) {
+								
 									changes += "* ${file.path}\n"
 								}
 							}
@@ -64,15 +65,20 @@ pipeline {
 					
 					echo changes
 					
-					if(changes.includes("Documents"))
-					{
-					DOC_EDIT = "change"
-					}
+					if (changes.indexOf("Documents") >= 0) {
+						
+						DOC_EDIT = "change"
+		
+							} 
 					
-					if(changes.includes("Documents"))
-					{
-					CODE_EDIT = "change"
-					}
+					if (changes.indexOf("Code") >= 0) {
+						
+						CODE_EDIT = "change"
+		
+							} 
+				
+					
+			
 					
 					
 					
@@ -82,7 +88,7 @@ pipeline {
 				
 				
 				
-						}
+						
 
 				}
 							}					

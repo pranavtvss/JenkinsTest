@@ -38,7 +38,7 @@ pipeline {
 					echo 'I execute on non-master branches.'
 					echo 'Result of previous build   ' + currentBuild.getPreviousBuild().result
 					
-					echo 'Result log of previous build   ' + currentBuild.getPreviousBuild().getLogText()
+					echo 'Result log of previous build   ' + currentBuild.getPreviousBuild().getLog(100)
 					
 					
 					

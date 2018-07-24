@@ -37,6 +37,11 @@ pipeline {
 					steps {
 					echo 'I execute on non-master branches.'
 					echo 'Result of previous build   ' + currentBuild.getPreviousBuild().result
+					
+					echo 'Result log of previous build   ' + currentBuild.getPreviousBuild().getLogText
+					
+					
+					
 						script{		
 					def changeLogSets = currentBuild.changeSets
 					for (int i = 0; i < changeLogSets.size(); i++) {

@@ -23,31 +23,20 @@ pipeline {
 			
 			script{
 			
-			def getLastSuccessfulCommit() {
-			  def lastSuccessfulHash = null
-			  def lastSuccessfulBuild = currentBuild.rawBuild.getPreviousSuccessfulBuild()
-			  if ( lastSuccessfulBuild ) {
-				lastSuccessfulHash = commitHashForBuild( lastSuccessfulBuild )
-			  }
-			  return lastSuccessfulHash
-			}
-			
-			
-			def commitHashForBuild( build ) {
-			  def scmAction = build?.actions.find { action -> action instanceof jenkins.scm.api.SCMRevisionAction }
-			  return scmAction?.revision?.hash
-}
-
-			 def lastSuccessfulCommit = getLastSuccessfulCommit()
-				  def currentCommit = commitHashForBuild( currentBuild.rawBuild )
-				  if (lastSuccessfulCommit) {
-					commits = sh(
-					  script: "git rev-list $currentCommit \"^$lastSuccessfulCommit\"",
-					  returnStdout: true
-					).split('\n')
-					println "Commits are: $commits"
-				  }
-
+					def changes = "Changes:\n"
+					build = currentBuild
+					while(build != null && build.result != 'SUCCESS') {
+						changes += "In ${build.id}:\n"
+						for (changeLog in build.changeSets) {
+							for(entry in changeLog.items) {
+								for(file in entry.affectedFiles) {
+									changes += "* ${file.path}\n"
+								}
+							}
+						}
+						build = build.previousBuild
+					}
+					echo changes
 			
 			
 			}

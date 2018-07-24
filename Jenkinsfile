@@ -3,7 +3,6 @@
 
 node( 'some_node' ) {
   stage( "Phase 1" ) {
-    sshagent( credentials: [ 'some_creds' ] ) {
       checkout scm
       def lastSuccessfulCommit = getLastSuccessfulCommit()
       def currentCommit = commitHashForBuild( currentBuild.rawBuild )
@@ -14,7 +13,7 @@ node( 'some_node' ) {
         ).split('\n')
         println "Commits are: $commits"
       }
-    }
+    
   }
 }
 

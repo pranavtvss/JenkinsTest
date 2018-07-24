@@ -86,7 +86,7 @@ pipeline {
 					
 	
 			stage ('Document zipping stage') {
-			echo 
+			echo DOC_EDIT
           
 			 when {   	  expression {
 									return DOC_EDIT == 'change';
@@ -105,6 +105,7 @@ pipeline {
 	
 			
 			stage ('Compile Stage Run') {
+			echo CODE_EDIT
           
 			 when {   	  expression {
 									return CODE_EDIT == 'change';

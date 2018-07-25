@@ -32,7 +32,7 @@ pipeline {
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
 					
-				
+				bat  ''+ BATCH_PATH + 'maveninstall.bat'
 
 										
 						}

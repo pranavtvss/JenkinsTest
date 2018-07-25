@@ -26,14 +26,12 @@ pipeline {
 					echo 'BUILD_ID           ' +BUILD_ID 
 					echo 'Jenkins URL        ' +JENKINS_URL
 					echo 'JOB NAME   		 ' +JOB_NAME
+					echo 'JOB BAE NAME   		 ' +JOB_BASE_NAME
 					echo 'JENKINS HOME   	 ' +JENKINS_HOME
 					echo 'JOB_URL  			 ' +JOB_URL
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
-					echo 'GIT_COMMITTER_NAME   		' +GIT_COMMITTER_NAME
-					echo 'GIT_AUTHOR_NAME  		' +GIT_AUTHOR_NAME
-					echo 'GIT_COMMITTER_EMAIL 		' +GIT_COMMITTER_EMAIL
-					echo 'GIT_AUTHOR_EMAIL   		' +GIT_AUTHOR_EMAIL
+					
 				
 
 										

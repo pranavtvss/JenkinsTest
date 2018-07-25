@@ -15,6 +15,31 @@ pipeline {
    
    stages {
    
+   	   stage ('Print mode') {
+          
+				steps { 
+					echo 'I only execute on the master branch.' 
+					echo 'Result of previous build  ' + currentBuild.getPreviousBuild().result
+					echo 'changed data       '+currentBuild.changeSets
+					echo 'Env build number   ' +ENV_BUILD_NO
+					echo 'BUILD_URL          ' +BUILD_URL
+					echo 'BUILD_ID           ' +BUILD_ID 
+					echo 'Jenkins URL        ' +JENKINS_URL
+					echo 'JOB NAME   		 ' +JOB_NAME
+					echo 'JENKINS HOME   	 ' +JENKINS_HOME
+					echo 'JOB_URL  			 ' +JOB_URL
+					echo 'GIT BRANCH   		 ' +GIT_BRANCH
+					echo 'WORKSPACE   		 ' +WORKSPACE 
+					echo 'GIT_COMMITTER_NAME   		' +GIT_COMMITTER_NAME
+					echo 'GIT_AUTHOR_NAME  		' +GIT_AUTHOR_NAME
+					echo 'GIT_COMMITTER_EMAIL 		' +GIT_COMMITTER_EMAIL
+					echo 'GIT_AUTHOR_EMAIL   		' +GIT_AUTHOR_EMAIL
+				
+
+										
+						}
+										}
+   
    
    	   
 	   stage ('Build only on master') {

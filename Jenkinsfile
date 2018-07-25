@@ -11,6 +11,7 @@ pipeline {
 	CODE_EDIT = "nochange"
 	DOC_EDIT = "nochange"
 	J_EDIT = ""
+	BATCH_PATH = "C:/Users/p.bhagwat/AppData/Roaming/npm/node_modules/qunit-puppeteer/bin/BAE_4_4/"
     }
    
    stages {
@@ -32,7 +33,7 @@ pipeline {
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
 					
-				bat  ''+ BATCH_PATH + 'maveninstall.bat'
+				bat  ''+ BATCH_PATH + 'sleep30.bat'
 
 										
 						}

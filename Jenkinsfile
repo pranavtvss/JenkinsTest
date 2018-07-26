@@ -100,15 +100,11 @@ pipeline {
 										
 				M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-						if(M_EDIT != "null")
+						if(M_EDIT.indexOf("UserIdCause") >= 0)
 						{
-						echo 'This build is triggered by user manully'
 							CODE_EDIT = "change"
 							DOC_EDIT = "change"
 						}
-						else{
-						echo 'github push caused by this trigger'
-						}	
 						
 						
 					if (changes.indexOf("Jenkinsfile") >= 0) {

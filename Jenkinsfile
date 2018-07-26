@@ -23,7 +23,7 @@ pipeline {
 				steps { 
 	
  					echo "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
-					script
+					
 					
 					
 					
@@ -98,7 +98,7 @@ pipeline {
 					
 					echo changes
 										
-						M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+				M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
 						if(M_EDIT != "null")
 						{
@@ -108,7 +108,7 @@ pipeline {
 						}
 						else{
 						echo 'github push caused by this trigger'
-						}
+						}	
 						
 						
 					if (changes.indexOf("Jenkinsfile") >= 0) {

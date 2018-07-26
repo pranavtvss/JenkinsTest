@@ -22,7 +22,7 @@ pipeline {
 				steps { 
 					
 					
-					node('awesome_node_label') {
+					node('master') {
  					println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties}"
     													}
 				

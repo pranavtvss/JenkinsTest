@@ -24,19 +24,7 @@ pipeline {
 	
  					echo "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					script
-					{
-					M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-						if(M_EDIT != "null")
-						{
-						echo 'This build is triggered by user manully'
-							DOC_EDIT = 'change'
-							CODE_EDIT = 'change'
-						}
-						else{
-						echo 'github push caused by this trigger'
-						}
-					}
 					
 					
 					echo 'I only execute on the master branch.' 
@@ -109,7 +97,20 @@ pipeline {
 					}
 					
 					echo changes
+										
+						M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
+						if(M_EDIT != "null")
+						{
+						echo 'This build is triggered by user manully'
+							CODE_EDIT = "change"
+							DOC_EDIT = "change"
+						}
+						else{
+						echo 'github push caused by this trigger'
+						}
+						
+						
 					if (changes.indexOf("Jenkinsfile") >= 0) {
 						
 						DOC_EDIT = "change"

@@ -25,11 +25,7 @@ pipeline {
 					node('master') {	
  					def getCauses = ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}
 						
-					if(getCauses)
-						{
-							println "getCauses  "+getCauses.properties.shortDescription
-						}
-    													}
+					println getCauses
 				
 					
 					

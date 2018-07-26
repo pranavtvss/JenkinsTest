@@ -23,6 +23,7 @@ pipeline {
 					
 					script{
 					def causes = currentBuild.rawBuild.getCauses()
+					echo 'cause timer trigger' + causes.class.getName().contains('TimerTriggerCause')
 					echo 'causes      '+causes.last()
 					echo 'causes[0]   '+causes[0]
 					def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)

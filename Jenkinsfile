@@ -22,16 +22,16 @@ pipeline {
           
 				steps { 
 	
- 					echo " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+ 					echo "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					script
 					{
 					M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
 						if(M_EDIT != "null")
 						{
-						echo 'This build is triggered bu user manully'
-							CODE_EDIT = "change"
+						echo 'This build is triggered by user manully'
 							DOC_EDIT = "change"
+							CODE_EDIT = "change"
 						}
 						else{
 						echo 'github push caused by this trigger'

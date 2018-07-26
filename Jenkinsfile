@@ -30,12 +30,12 @@ pipeline {
 					echo 'specificCAuse      '+ specificCause
 						
 						
-					def PRCause = currentBuild.rawBuild.getCause(org.jenkinsci.plugins.github.pullrequest.GitHubPRCause)
+					
 					def SCMCause = currentBuild.rawBuild.getCause(hudson.triggers.SCMTrigger$SCMTriggerCause)
 					def UserCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 					
 						
-					echo 'PRCause desc' +PRCause.getShortDescription()
+				
 					echo 'SCMCause desc' +SCMCause.getShortDescription()
 					echo 'UserCause desc' +UserCause.getShortDescription()
 					}

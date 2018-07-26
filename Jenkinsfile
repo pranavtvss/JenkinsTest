@@ -23,17 +23,7 @@ pipeline {
 					
 					
 					node('master') {
-						
-					if(${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties})
-						{
-						println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties}"
-						}
-					if(${currentBuild.rawBuild.getCause(hudson.triggers.SCMTrigger$SCMTriggerCause).properties})
-						{
-						println "CAUSE "CAUSE ${currentBuild.rawBuild.getCause(hudson.triggers.SCMTrigger$SCMTriggerCause).properties}"
-						}
-						
- 					
+ 					println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties.shortDescription}"
     													}
 				
 					

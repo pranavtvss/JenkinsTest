@@ -30,8 +30,8 @@ pipeline {
 						if(M_EDIT != "null")
 						{
 						echo 'This build is triggered by user manully'
-							DOC_EDIT = "change"
-							CODE_EDIT = "change"
+							DOC_EDIT = 'change'
+							CODE_EDIT = 'change'
 						}
 						else{
 						echo 'github push caused by this trigger'

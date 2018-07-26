@@ -34,6 +34,7 @@ pipeline {
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
 					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
+					echo 'BUILD_CAUSE   		 ' +currentBuild.causes[0]
 					
 				bat  ''+ BATCH_PATH + 'sleep30.bat'
 

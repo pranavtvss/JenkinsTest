@@ -42,7 +42,7 @@ pipeline {
 					echo 'WORKSPACE   	 ' +WORKSPACE 
 					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
 					
-				bat  ''+ BATCH_PATH + 'sleep30.bat'
+				bat  ''+ BATCH_PATH + 'sleep5.bat'
 
 										
 						}
@@ -80,6 +80,14 @@ pipeline {
 					
 		
 					script{
+						
+					M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					
+						if(M_EDIT.indexOf("UserIdCause") >= 0)
+						{
+							CODE_EDIT = "change"
+							DOC_EDIT = "change"
+						}
 			
 					def changes = "Changes:\n"
 					build = currentBuild
@@ -98,13 +106,7 @@ pipeline {
 					
 					echo changes
 										
-				M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
-					
-						if(M_EDIT.indexOf("UserIdCause") >= 0)
-						{
-							CODE_EDIT = "change"
-							DOC_EDIT = "change"
-						}
+				
 						
 						
 					if (changes.indexOf("Jenkinsfile") >= 0) {

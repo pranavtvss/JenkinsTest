@@ -36,8 +36,8 @@ pipeline {
 					
 						
 				
-					echo 'SCMCause desc' +SCMCause.getShortDescription()
-					echo 'UserCause desc' +UserCause.getShortDescription()
+					echo 'SCMCause desc' +SCMCause.properties
+					echo 'UserCause desc' +UserCause.properties
 					}
 					
 					echo 'I only execute on the master branch.' 

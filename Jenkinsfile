@@ -26,6 +26,7 @@ pipeline {
  					def getCauses = ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}
 						
 					println getCauses
+					}
 				
 					
 					

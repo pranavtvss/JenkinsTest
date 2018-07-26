@@ -22,16 +22,15 @@ pipeline {
 				steps { 
 					
 					
-					node{
-					def causes = currentBuild.rawBuild.getCauses()
+					node('awesome_node_label') {
+ 					def causes = currentBuild.rawBuild.getCauses()
 					echo 'cause timer trigger' + causes.class.getName()
 					echo 'causes      '+causes.last()
 					echo 'causes[0]   '+causes[0]
 					def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
-	
-						
+    													}
+				
 					
-					}
 					
 					echo 'I only execute on the master branch.' 
 					echo 'Result of previous build  ' + currentBuild.getPreviousBuild().result

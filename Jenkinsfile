@@ -22,11 +22,13 @@ pipeline {
 				steps { 
 					
 					
-					node('master') {	
- 					def getCauses = ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}
+					node('master') {
 						
-					println getCauses
-					}
+						
+ 					def c = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					println c
+					
+    													}
 				
 					
 					

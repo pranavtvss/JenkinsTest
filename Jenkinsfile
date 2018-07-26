@@ -34,7 +34,7 @@ pipeline {
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
 					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
-					echo 'CAUSE' + ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties}
+					echo 'CAUSE' + ${currentBuild.getCause(hudson.model.Cause$UserIdCause).properties}
 					
 				bat  ''+ BATCH_PATH + 'sleep30.bat'
 

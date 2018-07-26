@@ -22,13 +22,13 @@ pipeline {
 				steps { 
 					
 					
-					node('master') {
-					if((${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}) != null)
-			{
-			println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties.shortDescription}"
-						}
+					node('master') {	
+ 					def getCauses = ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}
 						
- 				
+					if(getCauses != null)
+						{
+							println "getCauses  "+getCauses.properties.shortDescription
+						}
     													}
 				
 					

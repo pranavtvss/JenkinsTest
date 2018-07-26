@@ -20,6 +20,14 @@ pipeline {
    	   stage ('Print mode') {
           
 				steps { 
+					
+					script{
+					def causes = currentBuild.rawBuild.getCauses()
+					echo 'causes      '+causes
+					def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+					echo 'specificCAuse      '+ specificCause
+					}
+					
 					echo 'I only execute on the master branch.' 
 					echo 'Result of previous build  ' + currentBuild.getPreviousBuild().result
 					echo 'changed data       '+currentBuild.changeSets
@@ -34,7 +42,6 @@ pipeline {
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
 					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
-					echo 'CAUSE' + ${currentBuild.getCause(hudson.model.Cause$UserIdCause).properties}
 					
 				bat  ''+ BATCH_PATH + 'sleep30.bat'
 
@@ -92,6 +99,13 @@ pipeline {
 					
 					echo changes
 					
+					if (changes.indexOf("Jenkinsfile") >= 0) {
+						
+						DOC_EDIT = "change"
+						CODE_EDIT = "change"
+							} 
+						
+						
 					if (changes.indexOf("Documents") >= 0) {
 						
 						DOC_EDIT = "change"

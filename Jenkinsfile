@@ -31,12 +31,12 @@ pipeline {
 						
 						
 					
-					def SCMCause = currentBuild.rawBuild.getCause(hudson.triggers.SCMTrigger$SCMTriggerCause)
+					
 					def UserCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
 					
 						
 				
-					echo 'SCMCause desc' +SCMCause.properties
+					
 					echo 'UserCause desc' +UserCause.properties
 					}
 					

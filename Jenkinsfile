@@ -25,7 +25,7 @@ pipeline {
  					echo " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					script
 					{
-					M_EDIT = " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					M_EDIT = "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
 						if(M_EDIT != "CAUSE null")
 						{

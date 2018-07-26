@@ -23,9 +23,12 @@ pipeline {
 					
 					
 					node('master') {
+					if((${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}) != null)
+			{
+			println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause).properties.shortDescription}"
+						}
 						
-						
- 					println "CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+ 				
     													}
 				
 					

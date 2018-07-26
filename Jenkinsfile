@@ -12,6 +12,7 @@ pipeline {
 	CODE_EDIT = "nochange"
 	DOC_EDIT = "nochange"
 	J_EDIT = ""
+	M_EDIT = ""
 	BATCH_PATH = "C:/Users/p.bhagwat/AppData/Roaming/npm/node_modules/qunit-puppeteer/bin/BAE_4_4/"
     }
    
@@ -26,6 +27,10 @@ pipeline {
 						
 						
  					 println " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					
+					M_EDIT = " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					
+					println M_EDIT
 					
 					
     													}

@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 	
-    environment {
+	environment {
 	ENV_BUILD_NO = "${env.BUILD_NUMBER}"
 	JENKINS_URL = "${env.JENKINS_URL}"
 	JOB_NAME = "${env.JOB_NAME}"
@@ -81,10 +81,9 @@ pipeline {
 		
 					script{
 						
-					M_EDIT = "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					M_EDIT = ""+"${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-						if(M_EDIT.indexOf("UserIdCause") >= 0)
-						{
+						if(M_EDIT.indexOf("UserIdCause") >= 0){
 							CODE_EDIT = "change"
 							DOC_EDIT = "change"
 						}

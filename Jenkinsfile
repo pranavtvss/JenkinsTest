@@ -24,6 +24,15 @@ pipeline {
 	
  					echo "${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
+					script{
+					
+						M_EDIT = ""+"${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					
+						if(M_EDIT.indexOf("UserIdCause") >= 0){
+							CODE_EDIT = "change"
+							DOC_EDIT = "change"
+						}
+					}
 					
 					
 					
@@ -81,12 +90,7 @@ pipeline {
 		
 					script{
 						
-					M_EDIT = ""+"${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
-					
-						if(M_EDIT.indexOf("UserIdCause") >= 0){
-							CODE_EDIT = "change"
-							DOC_EDIT = "change"
-						}
+
 			
 					def changes = "Changes:\n"
 					build = currentBuild

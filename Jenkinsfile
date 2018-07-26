@@ -8,6 +8,7 @@ pipeline {
 	JOB_NAME = "${env.JOB_NAME}"
 	JENKINS_HOME = "${env.JENKINS_HOME}"
 	GIT_BRANCH =    "${env.GIT_BRANCH}" 
+	BUILD_CAUSE =   "${env.BUILD_CAUSE}"
 	CODE_EDIT = "nochange"
 	DOC_EDIT = "nochange"
 	J_EDIT = ""
@@ -32,6 +33,7 @@ pipeline {
 					echo 'JOB_URL  			 ' +JOB_URL
 					echo 'GIT BRANCH   		 ' +GIT_BRANCH
 					echo 'WORKSPACE   		 ' +WORKSPACE 
+					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
 					
 				bat  ''+ BATCH_PATH + 'sleep30.bat'
 

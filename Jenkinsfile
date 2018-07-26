@@ -21,18 +21,20 @@ pipeline {
    	   stage ('Print mode') {
           
 				steps { 
+	
+ 					echo " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+					script
+					{
+					M_EDIT = " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-					
-					
-						
-						
- 					 echo " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
-					
-				
-					
-					
-    													
-				
+						if(M_EDIT != null)
+						{
+						echo 'This build is triggered bu user manully'
+						}
+						else{
+						echo 'github push caused by this trigger'
+						}
+					}
 					
 					
 					echo 'I only execute on the master branch.' 
@@ -42,12 +44,12 @@ pipeline {
 					echo 'BUILD_URL          ' +BUILD_URL
 					echo 'BUILD_ID           ' +BUILD_ID 
 					echo 'Jenkins URL        ' +JENKINS_URL
-					echo 'JOB NAME   		 ' +JOB_NAME
-					echo 'JOB BAE NAME   		 ' +JOB_BASE_NAME
+					echo 'JOB NAME   	 ' +JOB_NAME
+					echo 'JOB BAE NAME   	 ' +JOB_BASE_NAME
 					echo 'JENKINS HOME   	 ' +JENKINS_HOME
-					echo 'JOB_URL  			 ' +JOB_URL
-					echo 'GIT BRANCH   		 ' +GIT_BRANCH
-					echo 'WORKSPACE   		 ' +WORKSPACE 
+					echo 'JOB_URL  		 ' +JOB_URL
+					echo 'GIT BRANCH   	 ' +GIT_BRANCH
+					echo 'WORKSPACE   	 ' +WORKSPACE 
 					echo 'BUILD_CAUSE   		 ' +BUILD_CAUSE
 					
 				bat  ''+ BATCH_PATH + 'sleep30.bat'

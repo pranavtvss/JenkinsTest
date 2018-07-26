@@ -27,7 +27,7 @@ pipeline {
 					{
 					M_EDIT = " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-						if(M_EDIT != null)
+						if(M_EDIT != "CAUSE null")
 						{
 						echo 'This build is triggered bu user manully'
 						}

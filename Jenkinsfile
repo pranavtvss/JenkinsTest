@@ -23,17 +23,15 @@ pipeline {
 				steps { 
 					
 					
-					node('master') {
+					
 						
 						
- 					 println " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
+ 					 echo " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
 					
-					M_EDIT = " CAUSE ${currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)}"
-					
-					println M_EDIT
+				
 					
 					
-    													}
+    													
 				
 					
 					
